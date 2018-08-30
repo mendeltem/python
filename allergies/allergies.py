@@ -1,20 +1,12 @@
 class Allergies(object):
 
     def __init__(self, score):
-        #delete if the range is too big
-        while score >=256:
-            score -=256
-        # convert dezimal to binary and reverse 
-        self.score =  bin(score)[2:][::-1]
-        itemlist = ["eggs" ,"peanuts" ,"shellfish" ,"strawberries" ,"tomatoes" , "chocolate" ,"pollen" ,"cats" ]
-        list = []
-        z = 0
-        #fill the list with allergic items
-        for i in self.score:
-            if i == "1":
-                list.append(itemlist[int(z)])
-            z +=1
-        self.list = list
+        score =  score % 256
+        self.list = []
+        item_dict = {1:"eggs" ,2:"peanuts" ,4: "shellfish" ,8:"strawberries" ,16:"tomatoes" ,32: "chocolate" ,64:"pollen" ,128:"cats"}
+        for i,k in item_dict.items():
+            if score & i:
+                self.list.append(k)
 
     def is_allergic_to(self, item):
         if item in self.list:
@@ -24,3 +16,4 @@ class Allergies(object):
     @property
     def lst(self):
         return self.list
+
