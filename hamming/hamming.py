@@ -8,11 +8,3 @@ def distance(strand_a, strand_b):
         if strand_a[i]!= strand_b[i]:
             distance +=1
     return distance
-
-
-
-
-
-
-
-distance("GGACG","GGTCG")

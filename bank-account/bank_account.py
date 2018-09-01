@@ -1,18 +1,36 @@
+from threading import RLock
+
 class BankAccount(object):
     def __init__(self):
-        pass
+        self.money = 0
+        self.active = 0
+        self._lock = RLock();
 
     def get_balance(self):
-        pass
+        if self.active:
+            return self.money
+        else:
+            raise ValueError("Account not active")
 
     def open(self):
-        pass
+        if self.active ==0:
+            self.active = 1
 
     def deposit(self, amount):
-        pass
+        with self._lock:
+            if self.active and amount >0:
+                self.money += amount
+            else:
+                raise ValueError("Account not active")
 
     def withdraw(self, amount):
-        pass
+        with self._lock:
+            if self.active and  0 < amount <= self.money:
+                self.money -= amount
+            else:
+                raise ValueError("Account not active")
 
     def close(self):
-        pass
+        if self.active:
+            self.active = 0
+

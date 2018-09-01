@@ -1,0 +1,31 @@
+new:
+git init
+git remote add origin <server>
+
+
+#häufig verwendete
+git add *
+git commit -m "comment"
+git push origin master
+
+
+
+Branches:
+#neuen branch gründen
+git checkout -b feature_x
+#zum Master zurück sklave!
+git checkout master
+#branch l´öschen
+git branch -d feature_x
+
+
+
+#multiplayer
+git pull
+git merge branch
+
+
+
+
+
+git log
