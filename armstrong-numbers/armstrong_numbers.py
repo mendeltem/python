@@ -1,9 +1,3 @@
 def is_armstrong(number):
-    zahl = 0
-    for i in str(number):
-        zahl+= (int(i) ** len(str(number)))
-    if number == zahl:
-        return True
-    return False
+    return number == sum(int(i) ** len(str(number)) for i in str(number))
 
-print(is_armstrong(10))
