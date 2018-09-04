@@ -1,7 +1,7 @@
 def rotate(text, key):
     string= ""
     for i in text:
-        if 48 < ord(i) < 57 or ord(i) == ord(" ") or ord(i) == ord("!") or ord(i)== ord("'") or ord(i)== ord(",") or ord(i)== ord(".") :
+        if 48 < ord(i) < 57 or ord(" ") == ord(i) or ord(i) == ord("!") or ord(i)== ord("'") or ord(i)== ord(",") or ord(i)== ord(".") :
             z = ord(i)
         else:
             z = ord(i) + key
@@ -12,3 +12,5 @@ def rotate(text, key):
         else:
             string += chr(z)
     return string
+
+
