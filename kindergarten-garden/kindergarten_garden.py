@@ -7,6 +7,7 @@ class Garden(object):
 
     def __init__(self, seeds,students = None):
         self.stu = defaultdict(list)
+        self.haben = defaultdict(list)
         halbe =  seeds.splitlines()
 
         if students:
@@ -14,11 +15,13 @@ class Garden(object):
         else:
             all_students = STUDENTS
 
-
-        for i in range(int((len(seeds) - 1) / 4)):
-            self.stu[all_students[i]].extend([PLANTS[halbe[0][i * 2]], PLANTS[halbe[0][1 + i * 2]], PLANTS[halbe[1][i * 2]],
-                                              PLANTS[halbe[1][1 + i * 2]]])
+        for i, st in enumerate(all_students[0:int((len(seeds)-1) /4)]):
+            self.haben[st] = [PLANTS[halbe[0][i*2]],
+                              PLANTS[halbe[0][1+i * 2]],
+                              PLANTS[halbe[1][i*2]],
+                              PLANTS[halbe[1][1+i*2]]]
 
     def plants(self, student):
-        return self.stu[student]
+        return self.haben[student]
+
 
