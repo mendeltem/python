@@ -17,6 +17,3 @@ class Allergies(object):
     def lst(self):
         return self.list
 
-mendel= Allergies(2)
-
-mendel.is_allergic_to("eggs")

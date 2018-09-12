@@ -25,3 +25,8 @@ class Garden(object):
         return self.haben[student]
 
 
+gar = Garden("VRCG\nVRCG").plants("Bob")
+
+print(gar)
+
+
