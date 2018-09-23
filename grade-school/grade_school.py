@@ -1,57 +1,47 @@
 from collections import defaultdict
 
 
-
 class School(object):
     def __init__(self):
+        #a dictionary with the students to return for grade function
         self.students = defaultdict(list)
+        #a list to return with roster function
         self.sorted_list = []
 
+        #temp list file
+        self.listen = []
+
+        #first dictionary with the raw file, which get extracted to a list and dictionary
         self.student_class = defaultdict(list)
-        self.student_class = { 1 : "", 2 : "", 3 : "", 4 : ""}
+        self.student_class = {1: "", 2: "", 3: "", 4: "", 5:"", 6:"", 7:""}
 
     def add_student(self, name, grade):
+        #the raw dictionary gets filled
         self.student_class[grade] += name+";"
-
-        #print(self.student_class)
-        temp = 0
+        student_list = []
         string_tmp = ""
+
+        #the raw file get extracted to a  sorted list and dictionary
         for i,y in self.student_class.items():
-            temp = y
             for u in y:
                 if u != ";":
                     string_tmp += u
                 else:
-                    self.students[i].append(string_tmp)
+                    student_list.append(string_tmp)
                     string_tmp = ""
-                #self.students[i] += u
-
-                #self.students[i].append(u)
-            #print(i,y)
-            temp = 0
-            #print(y)
+            self.listen.append(sorted(student_list))
+            self.students[i] = sorted(student_list)
+            student_list = []
 
 
+        self.sorted_list = []
+        #flatten the lists fro list of list to a single list
+        for i in range(7):
+            self.sorted_list+= self.listen[i]
 
-
-
-        print("dict: ", self.students)
+        self.listen = []
     def roster(self):
         return (self.sorted_list)
 
     def grade(self, grade_number):
-        return sorted(self.students[grade_number])
-
-school = School()
-school.add_student("Mendel", 1)
-school.add_student("Bindy", 1)
-
-for name, grade in [
-    ('Peter', 2),
-    ('Anna', 1),
-    ('Barb', 1),
-    ('Zoe', 2),
-    ('Alex', 2),
-    ('Jim', 3),
-    ('Charlie', 1),
-]: school.add_student(name, grade)
+        return self.students[grade_number]
